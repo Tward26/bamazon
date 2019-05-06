@@ -1,0 +1,25 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Node.js and MySql app",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tward26/bamazon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tward26/bamazon/issues"
+  },
+  "homepage": "https://github.com/Tward26/bamazon#readme",
+  "dependencies": {
+    "console-table-printer": "^1.0.0-beta13",
+    "inquirer": "^6.3.1",
+    "mysql": "^2.17.1"
+  }
+}
