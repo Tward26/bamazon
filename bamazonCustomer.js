@@ -25,20 +25,21 @@ db.connect(function (err) {
 const displayItems = () => {
     db.query('SELECT item_id AS "ID", product_name AS "Product Name", price AS "Price" FROM products', function (err, res) {
         if (err) throw err;
+        const diffItems = res.length;
         printTable(res);
         console.log("\n");
-        purchaseItems();
+        purchaseItems(diffItems);
     });
 };
 
-const purchaseItems = () => {
+const purchaseItems = (numberOfItems) => {
     inquirer.prompt([
         {
             name: 'id',
             message: "What item would you like to buy? Please type it's ID number:",
             validate: function (inputtxt) {
                 var numbers = /^\d+$/;
-                if ((inputtxt.match(numbers)) && ((inputtxt > 0)) && (inputtxt <= 10)) {
+                if ((inputtxt.match(numbers)) && ((inputtxt > 0)) && (inputtxt <= numberOfItems)) {
                     return true;
                 }
                 return false;
