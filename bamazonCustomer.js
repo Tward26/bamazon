@@ -23,7 +23,7 @@ db.connect(function (err) {
 });
 
 const displayItems = () => {
-    db.query('SELECT item_id AS "ID", product_name AS "Product Name", department_name AS "Department", price AS "Price", stock_quantity AS "Quantity" FROM products', function (err, res) {
+    db.query('SELECT item_id AS "ID", product_name AS "Product Name", price AS "Price" FROM products', function (err, res) {
         if (err) throw err;
         printTable(res);
         console.log("\n");
