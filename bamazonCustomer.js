@@ -84,20 +84,22 @@ const placeOrder = (id, quantityOnHand, quantityOrdered) => {
 };
 
 const orderTotal = (id, quantity) => {
-    db.query('SELECT price FROM products WHERE item_id = ?', id, function(err,res){
-        if(err) throw err;
+    db.query('SELECT price FROM products WHERE item_id = ?', id, function (err, res) {
+        if (err) throw err;
         const total = (quantity * res[0].price).toFixed(2);
-        console.log("Your order total is: $" +total);
+        console.log("Your order total is: $" + total);
         updateProductSales(id, total);
     });
 };
 
 const updateProductSales = (id, total) => {
-    db.query('SELECT product_sales FROM products WHERE id = ?', id, (err,res) => {
-        if(err) throw err;
+    db.query('SELECT product_sales FROM products WHERE item_id = ?', id, (err, res) => {
+        if (err) throw err;
+        const newTotal = total + res[0].product_sales;
+        db.query('UPDATE products SET product_sales = ? WHERE item_id = ?', [newTotal, id], function (err, res) {
+            if (err) throw err;
+            db.end();
+        });
     });
-    db.query('UPDATE products SET product_sales = ? WHERE item_id = ?', [total, id], function(err,res){
-        if(err) throw err;
-        db.end();
-    });
+
 };
