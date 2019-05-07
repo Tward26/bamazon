@@ -47,3 +47,5 @@ CREATE TABLE departments
 ALTER TABLE products
 ADD COLUMN product_sales DECIMAL (10,2) DEFAULT 0;
 
+INSERT INTO departments (department_name, over_head_costs)
+VALUES ('Games', 2000), ('Movies', 1000), ('Comics', 1500);
