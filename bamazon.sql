@@ -34,5 +34,16 @@ CREATE TABLE products
         (9, "Kraven's Last Hunt", 'Comics', 27.99, 4),
         (10, "Saga: Volume 8", 'Comics', 10.99, 2);
 
+DROP TABLE IF EXISTS departments;
 
+CREATE TABLE departments
+(
+    department_id INT AUTO_INCREMENT NOT NULL,
+    department_name VARCHAR(255) NOT NULL,
+    over_head_costs DECIMAL(10,2) NOT NULL,
+    PRIMARY KEY(department_id)
+);
+
+ALTER TABLE products
+ADD COLUMN product_sales DECIMAL (10,2) DEFAULT 0;
 

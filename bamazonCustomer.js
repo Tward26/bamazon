@@ -88,6 +88,16 @@ const orderTotal = (id, quantity) => {
         if(err) throw err;
         const total = (quantity * res[0].price).toFixed(2);
         console.log("Your order total is: $" +total);
+        updateProductSales(id, total);
+    });
+};
+
+const updateProductSales = (id, total) => {
+    db.query('SELECT product_sales FROM products WHERE id = ?', id, (err,res) => {
+        if(err) throw err;
+    });
+    db.query('UPDATE products SET product_sales = ? WHERE item_id = ?', [total, id], function(err,res){
+        if(err) throw err;
         db.end();
     });
 };
