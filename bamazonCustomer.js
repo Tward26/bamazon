@@ -95,7 +95,7 @@ const orderTotal = (id, quantity) => {
 const updateProductSales = (id, total) => {
     db.query('SELECT product_sales FROM products WHERE item_id = ?', id, (err, res) => {
         if (err) throw err;
-        const newTotal = total + res[0].product_sales;
+        const newTotal = parseInt(total) + res[0].product_sales;
         db.query('UPDATE products SET product_sales = ? WHERE item_id = ?', [newTotal, id], function (err, res) {
             if (err) throw err;
             db.end();
